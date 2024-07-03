@@ -1,12 +1,13 @@
-import { useLoaderData } from "@remix-run/react";
+import { useLoaderData} from "@remix-run/react";
 import WordPressPage from "../../types/wordpress-page.interface";
 import Params from "~/types/params.interface";
 import pageLoader from "~/lib/pageLoader";
+import BreadcrumbLink from "~/components/BreadcrumbLink";
+import getYoastBreadcrumb from "~/lib/getYoastBreadcrumb";
 
 export async function loader({ params }: { params: Params }) {
 
     const { slug } = params;
-
     const { page, isCorrectPath } = await pageLoader({slug})
 
     if (!page || !isCorrectPath) {
@@ -15,6 +16,11 @@ export async function loader({ params }: { params: Params }) {
 
     return page;
 }
+
+export const handle = {
+    breadcrumb: (data: WordPressPage) => getYoastBreadcrumb(data)
+};
+
 
 const Page = () =>  {
     const page : WordPressPage = useLoaderData();

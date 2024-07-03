@@ -4,5 +4,6 @@ export default interface WordPressPage {
     slug: string,
     link: string,
     acf: object,
-    parent: number
+    parent: number,
+    yoast_head_json: { schema: object }
 }

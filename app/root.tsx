@@ -1,16 +1,24 @@
 import {
+    Link,
     Links,
     Meta,
     Outlet,
     Scripts,
-    ScrollRestoration,
+    ScrollRestoration
 } from "@remix-run/react";
-import "./tailwind.css";
+import "./styles/tailwind.css";
+import styles from '~/styles/default-styles.css'
 import React from "react";
 import Header from "~/components/Header";
 import Footer from "~/components/Footer";
+import Breadcrumb from "~/components/Breadcrumb";
+
+export const links: LinksFunction = () => [
+    { rel: "stylesheet", href: styles },
+];
 
 export function Layout({ children }: { children: React.ReactNode }) {
+
   return (
     <html lang="en">
       <head>
@@ -22,6 +30,8 @@ export function Layout({ children }: { children: React.ReactNode }) {
       <body>
 
       <Header/>
+
+      <Breadcrumb/>
 
       <main>
 
@@ -38,6 +48,6 @@ export function Layout({ children }: { children: React.ReactNode }) {
   );
 }
 
-export default function App() {git status
+export default function App() {
   return <Outlet />;
 }
