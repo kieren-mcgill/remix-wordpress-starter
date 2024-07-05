@@ -6,8 +6,9 @@ const Breadcrumb = () => {
     const matches = useMatches();
 
     const lastMatch = matches[matches.length - 1];
-    const breadcrumbs = (lastMatch.data as MatchData).breadcrumbs;
-    const showBreadcrumb = breadcrumbs[1].name !== "home page";
+    const breadcrumbs = (lastMatch.data as MatchData)?.breadcrumbs;
+
+    const showBreadcrumb = breadcrumbs ? breadcrumbs[1].name !== "home page" : false;
 
     return (
         <nav aria-label="breadcrumb">
