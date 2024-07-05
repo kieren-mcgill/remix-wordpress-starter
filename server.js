@@ -1,5 +1,6 @@
 import { createRequestHandler } from "@remix-run/express";
 import express from "express";
+import helmet from "helmet";
 
 const viteDevServer =
     process.env.NODE_ENV === "production"
@@ -11,6 +12,27 @@ const viteDevServer =
         );
 
 const app = express();
+
+app.use(
+    helmet({
+        contentSecurityPolicy: {
+            directives: {
+                defaultSrc: ["'self'"],
+                scriptSrc: ["'self'", "'unsafe-inline'", "'unsafe-eval'"], // Adjust as needed
+                styleSrc: ["'self'", "'unsafe-inline'"], // Adjust as needed
+                imgSrc: ["'self'", "data:", "https:"], // Adjust as needed
+                connectSrc: ["'self'", "https:", "ws://localhost:24678/"], // Adjust as needed
+                fontSrc: ["'self'", "https:", "data:"], // Adjust as needed
+                objectSrc: ["'none'"],
+                upgradeInsecureRequests: [],
+            },
+        },
+        frameguard: {
+            action: 'deny',
+        },
+        // Add other Helmet configurations as needed
+    })
+);
 
 app.use(
     viteDevServer
