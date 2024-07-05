@@ -1,29 +1,27 @@
 import { useLoaderData } from "@remix-run/react";
 import WordPressPage from "../../types/wordpress-page.interface";
 import Params from "~/types/params.interface";
-import pageLoader from "~/lib/pageLoader";
-import BreadcrumbLink from "~/components/BreadcrumbLink";
-import getYoastBreadcrumb from "~/lib/getYoastBreadcrumb";
+import pageLoader from "~/lib/page-loader";
 
 export async function loader({ params }: { params: Params }) {
 
     const { grandParentSlug, parentSlug, slug } = params;
 
-    const { page, isCorrectPath } = await pageLoader({grandParentSlug, parentSlug, slug})
+    const { page, isCorrectPath, breadcrumbs } = await pageLoader({grandParentSlug, parentSlug, slug})
 
     if (!page || !isCorrectPath) {
         throw new Response('Page not found', { status: 404 });
     }
 
-    return page;
+    return {page, breadcrumbs};
 }
 
 export const handle = {
-    breadcrumb: (data: WordPressPage) => getYoastBreadcrumb(data)
+
 };
 
 const Page = () =>  {
-    const page : WordPressPage = useLoaderData();
+    const {page} : {page : WordPressPage} = useLoaderData();
 
     return (
         <div>

@@ -1,23 +1,36 @@
-import { useMatches } from "@remix-run/react";
+import {useMatches} from "@remix-run/react";
+import MatchData from "~/types/match-data.interface";
+import BreadcrumbLink from "~/components/BreadcrumbLink";
 
 const Breadcrumb = () => {
     const matches = useMatches();
 
-    const breadcrumbs = matches
-        .filter((match) => match.handle && match.handle.breadcrumb)
-        .map((match) => ({
-            elements: match.handle.breadcrumb({ breadcrumbs: match.data.breadcrumbs })
-        }));
+    const lastMatch = matches[matches.length - 1];
+    const breadcrumbs = (lastMatch.data as MatchData).breadcrumbs;
+    const showBreadcrumb = breadcrumbs[1].name !== "home page";
 
     return (
         <nav aria-label="breadcrumb">
-            <ol>
-                {breadcrumbs.flat().map((breadcrumb, index) => (
-                    <li key={index}>
-                        <a href={breadcrumb.item}>{breadcrumb.name}</a>
-                    </li>
-                ))}
-            </ol>
+            {(breadcrumbs && showBreadcrumb) &&
+                <ol className={"flex gap-3"}>
+                    {breadcrumbs.map((breadcrumb, index: number) => {
+
+                            const itemURLObj = breadcrumb.item && new URL(breadcrumb.item)
+                            const relPath = itemURLObj ? itemURLObj.pathname : "#"
+
+                            return (
+                                <li key={index}>
+                                    <BreadcrumbLink
+                                        path={relPath}
+                                        name={breadcrumb.name}
+                                        isLastItem={index === breadcrumbs.length - 1}
+                                    />
+                                </li>
+                            )
+                        }
+                    )}
+                </ol>
+            }
         </nav>
     );
 }

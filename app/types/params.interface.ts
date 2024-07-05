@@ -1,4 +1,5 @@
 export  default interface Params {
-    parentSlug: string,
+    grandParentSlug?: string,
+    parentSlug?: string,
     slug: string;
 }

@@ -4,18 +4,13 @@ import {
     Meta,
     Outlet,
     Scripts,
-    ScrollRestoration
+    ScrollRestoration,
 } from "@remix-run/react";
 import "./styles/tailwind.css";
-import styles from '~/styles/default-styles.css'
 import React from "react";
 import Header from "~/components/Header";
 import Footer from "~/components/Footer";
 import Breadcrumb from "~/components/Breadcrumb";
-
-export const links: LinksFunction = () => [
-    { rel: "stylesheet", href: styles },
-];
 
 export function Layout({ children }: { children: React.ReactNode }) {
 

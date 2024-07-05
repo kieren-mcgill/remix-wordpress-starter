@@ -1,3 +1,5 @@
+import YoastHeadJson from "~/types/yoast-head-json.interface";
+
 export default interface WordPressPage {
     id: number;
     title: { rendered: string };
@@ -5,5 +7,5 @@ export default interface WordPressPage {
     link: string,
     acf: object,
     parent: number,
-    yoast_head_json: { schema: object }
+    yoast_head_json: YoastHeadJson
 }

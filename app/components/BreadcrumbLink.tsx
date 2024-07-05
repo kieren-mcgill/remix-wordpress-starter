@@ -1,13 +1,12 @@
-import WordPressPage from "~/types/wordpress-page.interface";
-import { Link }from '@remix-run/react'
+import {Link} from '@remix-run/react'
 
-const BreadcrumbLink = ({ data }: { data: WordPressPage }) => {
+const BreadcrumbLink = ({path, name, isLastItem}: { path: string, name: string, isLastItem: boolean }) => {
 
-    const urlObj = new URL(data.link)
-    const path = urlObj.pathname
-    const title =  data.title.rendered
     return (
-        <Link to={path}>{title}</Link>
+        isLastItem ?
+            <p>{name}</p>
+            :
+            <Link to={path}>{name}</Link>
     )
 }
 

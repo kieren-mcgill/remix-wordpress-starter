@@ -1,4 +1,3 @@
-
 import { useLoaderData } from "@remix-run/react";
 import WordPressPost from "../../types/wordpress-post.interface";
 import Params from "~/types/params.interface";
@@ -8,20 +7,21 @@ export async function loader({ params }: { params: Params }) {
 
     const { slug } = params;
 
-    const post : WordPressPost | null = await fetchPost(slug);
+    const {post, breadcrumbs} = await fetchPost(slug);
 
     if (!post) {
         throw new Response('Post not found', { status: 404 });
     }
 
-    return post;
-
+    return { post, breadcrumbs };
 }
 
-const Post = () =>  {
-    const post : WordPressPost = useLoaderData();
+export const handle = {
 
-    console.log("wp page data", post)
+};
+
+const Post = () =>  {
+    const {post} : {post : WordPressPost} = useLoaderData();
 
     return (
         <div>

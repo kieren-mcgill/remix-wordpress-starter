@@ -1,12 +1,12 @@
 import WordPressPage from "~/types/wordpress-page.interface";
 import Params from "~/types/params.interface";
-import { fetchPage } from "~/lib/api/fetch-page";
-import PageLoaderResult from "~/types/pageLoaderResult.interface";
+import {fetchPage} from "~/lib/api/fetch-page";
+import PageLoaderResult from "~/types/page-loader-result.interface";
 
 const pageLoader = async (params: Params): Promise<PageLoaderResult> => {
-    const { grandParentSlug, parentSlug, slug } = params;
+    const {grandParentSlug, parentSlug, slug} = params;
 
-    const page: WordPressPage | null = await fetchPage(slug);
+    const {page, breadcrumbs} = await fetchPage(slug);
 
     let isCorrectPath = false;
 
@@ -22,7 +22,7 @@ const pageLoader = async (params: Params): Promise<PageLoaderResult> => {
         }
     }
 
-    return { page, isCorrectPath };
+    return {page, isCorrectPath, breadcrumbs};
 };
 
 export default pageLoader;
