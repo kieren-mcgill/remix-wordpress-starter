@@ -11,6 +11,7 @@ const Breadcrumb = () => {
 
     return (
         <nav aria-label="breadcrumb">
+
             {(breadcrumbs && showBreadcrumb) &&
                 <ol className={"flex gap-3"}>
                     {breadcrumbs.map((breadcrumb, index: number) => {
@@ -31,6 +32,7 @@ const Breadcrumb = () => {
                     )}
                 </ol>
             }
+
         </nav>
     );
 }

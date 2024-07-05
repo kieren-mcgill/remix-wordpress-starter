@@ -1,6 +1,7 @@
-import { useLoaderData } from "@remix-run/react";
-import WordPressPage from "../types/wordpress-page.interface";
+import {MetaFunction, useLoaderData} from "@remix-run/react";
 import { fetchPage } from "~/lib/api/fetch-page";
+import WordPressPost from "~/types/wordpress-post.interface";
+import getYoastMeta from "~/lib/get-yoast-meta";
 
 export async function loader() {
     const slug = 'home-page';
@@ -14,10 +15,19 @@ export async function loader() {
     return { page, breadcrumbs };
 }
 
+export const meta: MetaFunction = ({data}) => {
+    if (!data) {
+        return [];
+    }
+    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+    // @ts-expect-error
+    return getYoastMeta(data.page);
+};
+
 
 
 const HomePage = () => {
-    const {page}: { page: WordPressPage } = useLoaderData();
+    const {page}: { page: WordPressPost } = useLoaderData();
 
     return (
         <div>

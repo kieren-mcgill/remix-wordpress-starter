@@ -1,7 +1,7 @@
-import WordPressPage from "~/types/wordpress-page.interface";
 import getYoastBreadcrumb from "~/lib/get-yoast-breadcrumb";
+import WordPressPost from "~/types/wordpress-post.interface";
 
 export default interface FetchPageResult {
-    page: WordPressPage | null;
+    page: WordPressPost | null;
     breadcrumbs: ReturnType<typeof getYoastBreadcrumb>;
 };

@@ -1,4 +1,3 @@
-import WordPressPage from "~/types/wordpress-page.interface";
 import Params from "~/types/params.interface";
 import {fetchPage} from "~/lib/api/fetch-page";
 import PageLoaderResult from "~/types/page-loader-result.interface";
