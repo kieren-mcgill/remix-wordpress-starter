@@ -19,8 +19,7 @@ export const meta: MetaFunction = ({data}) => {
     if (!data) {
         return [];
     }
-    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-    // @ts-expect-error
+
     return getYoastMeta(data.page);
 };
 
