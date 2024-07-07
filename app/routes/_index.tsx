@@ -4,7 +4,7 @@ import WordPressPost from "~/types/wordpress-post.interface";
 import getYoastMeta from "~/lib/get-yoast-meta";
 
 export async function loader() {
-    const slug = 'home-page';
+    const slug = 'home';
 
     const { page, breadcrumbs } = await fetchPage(slug);
 

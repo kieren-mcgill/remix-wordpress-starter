@@ -1,4 +1,4 @@
-import {Link} from '@remix-run/react'
+import {NavLink} from '@remix-run/react'
 
 const BreadcrumbLink = ({path, name, isLastItem}: { path: string, name: string, isLastItem: boolean }) => {
 
@@ -6,7 +6,7 @@ const BreadcrumbLink = ({path, name, isLastItem}: { path: string, name: string, 
         isLastItem ?
             <p>{name}</p>
             :
-            <Link to={path}>{name}</Link>
+            <NavLink to={path}>{name}</NavLink>
     )
 }
 

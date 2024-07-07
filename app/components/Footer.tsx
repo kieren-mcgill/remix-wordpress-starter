@@ -1,8 +1,13 @@
+import Sitemap from "~/components/Sitemap";
 
 const Footer = () => {
 
     return (
-        <h2>Footer</h2>
+        <div className={"min-h-24 bg-blue-400"}>
+            <h2>Footer</h2>
+            <Sitemap/>
+        </div>
+
     )
 }
 

@@ -18,11 +18,10 @@ app.use(
         contentSecurityPolicy: {
             directives: {
                 defaultSrc: ["'self'"],
-                scriptSrc: ["'self'", "'unsafe-eval'"], // Adjust as needed
-                styleSrc: ["'self'", "'unsafe-inline'"], // Adjust as needed
-                imgSrc: ["'self'", "data:", "https:"], // Adjust as needed
-                connectSrc: ["'self'", "https:", "ws://localhost:24678/"], // Adjust as needed
-                fontSrc: ["'self'", "https:", "data:"], // Adjust as needed
+                scriptSrc: ["'self'", "'unsafe-eval'", "'unsafe-inline'"],
+                styleSrc: ["'self'", "'unsafe-inline'"],
+                imgSrc: ["'self'", "data:", "https:"],
+                connectSrc: ["'self'", "https:", "ws://localhost:24678/"],
                 objectSrc: ["'none'"],
                 upgradeInsecureRequests: [],
             },
